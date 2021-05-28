@@ -1,0 +1,36 @@
+
+[MASTER]
+extension-pkg-whitelist=lxml
+load-plugins=pylint.extensions.broad_try_clause
+
+[MESSAGES CONTROL]
+
+# See https://github.com/janjur/readable-pylint-messages for human-readable pylint names
+
+enable=
+    trailing-comma-tuple, # This is almost always a mistake
+
+disable=
+    too-few-public-methods, # Too pedantic, especially for dataclasses
+    missing-docstring, # Most code is closed-source and non-library, so docstrings are less necessary
+    no-else-return, # Sometimes else-after-return is more symmetric and looks better
+    no-else-raise, # Again, sometimes this just looks better
+    invalid-name, # Many of these are agreeable, but there's too many exceptions
+    misplaced-comparison-constant, # Sometimes the reverse is more intuitive or consistent
+    unsubscriptable-object, # Pylint gets it wrong all the time with parameterized types, and mypy catches these anyway
+    no-member, # The typechecker should be able to catch these errors
+    fixme, # Leaving this on encourages using synonyms for "TODO" or, worse, not recording it at all
+
+[FORMAT]
+max-line-length=140 # Going over 80 or 120 is fine occasionally but at some point you should just stop
+
+[STRING]
+check-quote-consistency=yes # Pick either " or ' and stick with it (unless escaping)
+
+[TYPECHECK]
+ignored-modules=pydantic,pydantic.json
+
+[SIMILARITIES]
+min-similarity-lines=15 # There should be a limit, but the default (4) was a little too low for my test
+
+# vim: textwidth=0 wrap

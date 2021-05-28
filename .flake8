@@ -1,0 +1,8 @@
+[flake8]
+
+# Going over 80 or 120 is fine occasionally but at some point you should just stop
+max-line-length=140
+
+ignore=
+    E203, # https://black.readthedocs.io/en/stable/the_black_code_style.html#slices
+    W503, # https://black.readthedocs.io/en/stable/the_black_code_style.html#line-breaks-binary-operators
